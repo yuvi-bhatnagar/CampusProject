@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <img src="./images/logo2.png" alt="School Logo" class="logo">
+    <h1>Campus Space</h1>
+  </header>
+  <main>
+    <div class="container">
+      <div class="component">
+        <h2>Overall Attendance</h2>
+        <div class="chart-container">
+          <canvas id="attendanceChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const attendanceData = {
+      present: 85,
+      absent: 15,
+      
+    };
+
+    // Pie chart configuration
+    const chartConfig = {
+      type: 'pie',
+      data: {
+        labels: ['Absent', 'Present'],
+        datasets: [{
+          data: [
+            attendanceData.absent,
+            attendanceData.present,
+          ],
+          backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        title: {
+          display: true,
+          text: 'Attendance Breakdown'
+        }
+      }
+    };
+
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+    new Chart(ctx, chartConfig);
+  </script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #0B1320, #121D2A);
+    }
+
+    header {
+      background-color: #0B1320;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      width: 184.55 px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+
+      font-size: 36px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .container {
+      align-items: center;
+      height: 80vh;
+      padding: 0 auto;
+    }
+
+    .component {
+       width:25%; 
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-top: 5rem;
+      margin-left: 37.5%;
+      text-align: center;
+    }
+
+    .component h2 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    .chart-container {
+      max-width: 400px;
+      height: 300px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    main {
+      margin-top: 20px;
+    }
+  </style>
+</body>
+
+</html>

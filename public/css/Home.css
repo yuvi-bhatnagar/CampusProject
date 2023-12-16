@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  background:linear-gradient(#000000,rgba(0, 0, 0, 0.952) );
+}
+
+#particles-js {
+  margin: 0;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+ .container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+} 
+
+header {
+  background-color: #000000;
+  color: #fff;
+  padding: 15px;
+  width: auto;
+}
+
+header img {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  height: 45px;
+}
+
+#logo {
+  text-align: left;
+}
+
+#logo h1 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 60px;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+#about {
+  position: absolute;
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgba(41, 34, 34, 0.692);
+  backdrop-filter: blur(2px);
+  box-shadow: 20px 20px 100px #000000;
+  contain: content;
+  margin-top: 60px;
+}
+#p1{
+  padding-top: 5%;
+  padding-left: 30%;
+  font-size: 30px;
+}
+ p{
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-top: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.btn {
+  left: 50%;
+  top: 80%;
+  position: absolute;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #0B1320;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.btn1
+{
+  left: 35%;
+  top: 80%;
+  position: absolute;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #0B1320;
+  text-decoration: none;
+  border-radius: 4px
+}

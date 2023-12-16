@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/Attendance.css">
+    <title>Attendance</title>
+</head>
+
+<body>
+
+    <div class="box" id="heading">
+        <h1> Attendance </h1>
+    </div>
+    <form  action="/AttendanceSearch" method="post" class="selection">
+
+        <span>
+            <label for="dep">Department</label>
+            <select id="dep" name="dep">
+                <option value="cse">CSE</option>
+                <option value="IT">IT</option>
+                <option value="Mech">MECH</option>
+                <option value="Elec">ELEC</option>
+            </select>
+        </span>
+        <span>
+            <label for="year">Year</label>
+            <select id="year" name="year">
+                <option value="1">FIRST</option>
+                <option value="2">SECOND</option>
+                <option value="3">THIRD</option>
+                <option value="4">FOURTH</option>
+            </select>
+        </span>
+        <span>
+            <label for="sec">Section</label>
+            <select id="sec" name="sec">
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+            </select>
+        </span>
+        <input type="submit" name="search" value="Search">
+    </form>
+    <div class="stable">
+        <table>
+            <tr class="head">
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Status</th>
+            </tr>
+            <form action="/submitAttendance" method="post">
+            <% for(var i=0;i<student.length;i++){ %>
+            <tr>
+                <td>
+                    <%- student[i].roll  %>
+                </td>
+                <td>
+                    <%- student[i].name %>
+                </td>
+                <td>
+                    <input id="name" type="checkbox">
+                </td>
+            </tr>
+            <% } %>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <input type="submit" name="add" value="Submit" id="btn">
+                </td>
+            </tr>
+            </form>
+        </table>
+
+    </div>
+        <div class="status">
+            <%= status %>
+        </div>
+</body>
+
+</html>

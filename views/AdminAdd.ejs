@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="./css/AdminAdd.css">
+<head>
+    <title>Admin</title>
+</head>
+<body>
+    <header>
+        <div class="headcontainer">
+          <div class="logo">
+            <img src="./images/logo2.png" alt="Campus Space Logo">
+            <h1>Campus Space</h1>
+          </div>
+        </div>
+      </header>
+  <div class="container">
+    <h2>Add Student User</h2>
+    <button id="addStudentButton" class="btn">Add Student</button>
+    <form id="addStudentForm"  action="/addstudent" method="POST" style="display:none">
+      <input type="text" id="studentName" name="studentName" placeholder="Name" required>
+      <input type="text" id="studentId" name="studentId" placeholder="Student ID" required>
+      <input type="text" id="Branch" name="Branch" placeholder="Branch" required>
+      <input type="text" id="Year" name="Year" placeholder="Year" required>
+      <input type="text" id="Section" name="Section" placeholder="Section" required>
+      <input type="password" name="studentPassword" placeholder="Password" required>
+      <input type="submit" name="addstudent" value="Add Student">
+    </form>
+
+    <h2>Add Teacher User</h2>
+    <button id="addTeacherButton" class="btn" >Add Teacher</button>
+    <form id="addTeacherForm" action="/addteacher" method="POST" style="display:none">
+        <input type="text" id="teacherName" name="teacherName" placeholder="Name" required>
+        <input type="text" id="teacherId" name="teacherId" placeholder="Teacher ID" required>
+        <input type="text" id="designation" name="designation" placeholder="Designation" required>
+      <input type="password" id="teacherPassword" name="teacherPassword" placeholder="Password" required>
+      <input type="submit" name="addteacher" value="Add Teacher">
+    </form>
+
+    <div class="user-list">
+      <h2>Student List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Sr no.</th>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>Section</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <% for(var i=0;i<student.length;i++){ %>
+              <tr>
+                <td><%- i+1 %></td>
+                <td><%- student[i].name %></td>
+                <td><%- student[i].branch %></td>
+                <td><%- student[i].section %></td>
+                <td><%- student[i].pass %></td>
+              </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="user-list">
+      <h2>Teacher List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Sr no.</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <% for(var i=0;i<teacher.length;i++){ %>
+              <tr>
+                <td><%- i+1 %></td>
+                <td><%- teacher[i].name %></td>
+                <td><%- teacher[i].designation %></td>
+                <td><%- teacher[i].pass %></td>
+              </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
+
+  <script>
+    // Toggle visibility of the student form
+    document.getElementById("addStudentButton").addEventListener("click", function() {
+      const studentForm = document.getElementById("addStudentForm");
+      studentForm.style.display = (studentForm.style.display === "none") ? "block" : "none";
+    });
+
+    // Toggle visibility of the teacher form
+    document.getElementById("addTeacherButton").addEventListener("click", function() {
+      const teacherForm = document.getElementById("addTeacherForm");
+      teacherForm.style.display = (teacherForm.style.display === "none") ? "block" : "none";
+    });
+  </script>
+</body>
+</html>

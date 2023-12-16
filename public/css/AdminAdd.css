@@ -1,0 +1,75 @@
+body {
+  background-color: #101c2f;
+}
+header {
+  background-color: transparent;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+header .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .logo img {
+  height: 80px;
+  margin-right: 10px;
+}
+
+header .logo h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.container {
+  max-width: 60vw;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: transparent;
+  color: white;
+}
+
+.btn{
+    color: white;
+    background-color: #0b1320;
+    height: 2rem;
+    width: 10rem;
+    font-size: medium;
+    margin: 2;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #0b1320;
+  color: white;
+  border: 1px solid #ccc;
+}
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.user-list {
+  margin-top: 20px;
+}
+.user-list table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+}
+.user-list th,
+.user-list td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}

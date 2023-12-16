@@ -1,0 +1,133 @@
+html {
+  background-color: #e4e9fd;
+  background-image: -webkit-linear-gradient(65deg, #6945a9 50%, #e4e9fd 50%);
+  min-height: 1000px;
+  font-family: "helvetica neue";
+}
+
+h1 {
+  color: #fff;
+  padding: 10px;
+}
+
+.box {
+  max-width: 400px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+#heading {
+  background-color: #a683e3;
+  text-align: center;
+}
+
+input:checked + p {
+  text-decoration: line-through;
+  text-decoration-color: #a683e3;
+}
+
+input[type="checkbox"] {
+  margin: 20px;
+}
+
+button {
+  min-height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-color: transparent;
+  background-color: #a683e3;
+  color: #fff;
+  font-size: 30px;
+  padding-bottom: 6px;
+  border-width: 0;
+}
+
+input[type="text"] {
+  text-align: center;
+  height: 60px;
+  top: 10px;
+  border: none;
+  background-color: #7c4ad2;
+  font-size: 20px;
+  font-weight: 200;
+  width: 313px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: inset 0 -3px 0 0 #a683e3;
+}
+
+::placeholder {
+  color: grey;
+  opacity: 1;
+}
+
+.stable {
+  max-width: 70vw;
+  margin: 50px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+tr {
+  align-items: center;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+th {
+  width: 20vw;
+  margin: 5px auto;
+  color: #7c4ad2;
+  font-size: 32px;
+}
+
+td{
+  
+  text-align: center;
+  width: 20vw;
+  padding-right: 0; 
+  font-size: 24px;
+}
+
+table {
+  text-indent: initial;
+  border-spacing: 2px;
+  border-collapse: collapse;
+  display: table;
+  border-spacing: 2px;
+  border-color: black;
+}
+.selection {
+  font-size: 24px;
+  color: #1f0e3b;
+  margin: 5vh auto;
+  width: 70%;
+}
+.selection span {
+  padding-right: 5vw;
+  margin: 0 auto;
+}
+.selection span label {
+  padding-right: 1.5vw;
+}
+.selection span select {
+  width: 8%;
+  padding: 2px 10px;
+  border: none;
+  border-radius: 4px;
+}
+
+#btn{
+  height: 2rem;
+  width: 4rem;
+}
+
+.status{
+  color:#5818c5;
+  font-size: 48px;
+  text-align: center;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable - Campus Space</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="centered-header">
+            <img src="./images/logo.png" alt="Campus Space Logo" class="logo">
+            <h1>Campus Space</h1>
+        </div>
+    </header>
+    <main>
+        <div class="timetable">
+            <table>
+                <tr>
+                    <th>Time</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+                <tr>
+                    <td>9:40 AM - 10:30 AM</td>
+                    <td>Class A</td>
+                    <td>Class B</td>
+                    <td>Class C</td>
+                    <td>Class D</td>
+                    <td>Class E</td>
+                </tr>
+                <tr>
+                    <td>10:30 AM - 11:20 AM</td>
+                    <td>Class A</td>
+                    <td>Class B</td>
+                    <td>Class C</td>
+                    <td>Class D</td>
+                    <td>Class E</td>
+                </tr>
+                <tr>
+                    <td>11:20 AM - 12:10 PM</td>
+                    <td>Class A</td>
+                    <td>Class B</td>
+                    <td>Class C</td>
+                    <td>Class D</td>
+                    <td>Class E</td>
+                </tr>
+                <tr>
+                    <td>12:10 PM - 1:00 PM</td>
+                    <td>Class A</td>
+                    <td>Class B</td>
+                    <td>Class C</td>
+                    <td>Class D</td>
+                    <td>Class E</td>
+                </tr>
+                <tr>
+                    <td>1:00 PM  -  1:40 PM</td>
+                    <td>RECESS</td>
+                    <td>RECESS</td>
+                    <td>RECESS</td>
+                    <td>RECESS</td>
+                    <td>RECESS</td>
+                </tr>
+                <tr>
+                    <td>1:40 PM - 2:30 PM</td>
+                    <td>Class A</td>
+                    <td>Class B</td>
+                    <td>Class C</td>
+                    <td>Class D</td>
+                    <td>Class E</td>
+                </tr>
+                <tr>
+                    <td>2:40 PM - 3:30 PM</td>
+                    <td>Class A</td>
+                    <td>Class B</td>
+                    <td>Class C</td>
+                    <td>Class D</td>
+                    <td>Class E</td>
+                </tr>
+            </table>
+            <h2 id="currentDate"></h2>
+        </div>
+    </main>
+    <script>
+        // Get the current date
+        const currentDate = new Date().toLocaleDateString();
+
+        // Display the current date
+        document.getElementById("currentDate").textContent = currentDate;
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #0B1320, #032a3d);
+            color: #fff;
+        }
+
+        header {
+            background-color: #0B1320;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .centered-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .timetable {
+            background: linear-gradient(to right, #032a3d, #0c989c, #5faece);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #555;
+        }
+
+        th {
+            background-color: #0B1320;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #0B1320;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #032a3d;
+        }
+    </style>
+</body>
+</html>
