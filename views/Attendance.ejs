@@ -14,7 +14,7 @@
     <div class="box" id="heading">
         <h1> Attendance </h1>
     </div>
-    <form  action="/AttendanceSearch" method="post" class="selection">
+    <form action="/AttendanceSearch" method="post" class="selection">
 
         <span>
             <label for="dep">Department</label>
@@ -53,33 +53,30 @@
                 <th>Status</th>
             </tr>
             <form action="/submitAttendance" method="post">
-            <% for(var i=0;i<student.length;i++){ %>
-            <tr>
-                <td>
-                    <%- student[i].roll  %>
-                </td>
-                <td>
-                    <%- student[i].name %>
-                </td>
-                <td>
-                    <input id="name" type="checkbox">
-                </td>
-            </tr>
-            <% } %>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <input type="submit" name="add" value="Submit" id="btn">
-                </td>
-            </tr>
+                <% for(var i=0; i<student.length; i++) { %>
+                    <tr>
+                        <td><%- student[i].roll %></td>
+                        <td><%- student[i].name %></td>
+                        <td>
+                            <input name="students" type="checkbox" value="<%- student[i].roll %>">
+                            <input name="Allstudents" type="hidden" value="<%- student[i].roll %>">
+                        </td>
+                    </tr>
+                    <% } %>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <input type="submit" name="add" value="Submit" id="btn">
+                            </td>
+                        </tr>
             </form>
         </table>
 
     </div>
-        <div class="status">
-            <%= status %>
-        </div>
+    <div class="status">
+        <%= status %>
+    </div>
 </body>
 
 </html>

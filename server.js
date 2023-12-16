@@ -1,30 +1,31 @@
 // jshint esversion:6
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const express = require("express");
-const bodyParser=require("body-parser");
+const bodyParser = require("body-parser");
 const ejs = require("ejs");
-require('dotenv').config();
-const app=express();
-app.set('view engine','ejs');
-app.use(express.static('public'));  
-app.use(bodyParser.urlencoded({extended: false}));
+require("dotenv").config();
+const app = express();
+app.set("view engine", "ejs");
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const db = require("./models/db");
 db.init();
-const Teacher = require('./models/teacher'); 
-const Student = require('./models/student');
-const Admin = require('./models/admin');
+const Teacher = require("./models/teacher");
+const Student = require("./models/student");
+const Admin = require("./models/admin");
+const Attendance = require("./models/attendance");
 
-app.get("/",function(req,res){
-    res.render("home");
-})
+app.get("/", function (req, res) {
+  res.render("home");
+});
 
-app.get("/login",function(req,res){
-    res.render("login",valid="");
-})
+app.get("/login", function (req, res) {
+  res.render("login", (valid = ""));
+});
 
-app.post('/login', async function (req, res) {
+app.post("/login", async function (req, res) {
   try {
     const user = req.body.username.toLowerCase();
     const pass = req.body.password.toLowerCase();
@@ -32,74 +33,74 @@ app.post('/login', async function (req, res) {
     const student = await Student.findOne({ name: user, pass: pass }).exec();
 
     if (student) {
-      res.render('sint');
+      res.render("sint",{rollno:student.roll});
     } else {
-      res.render('login', { valid: 'Invalid username or password' });
+      res.render("login", { valid: "Invalid username or password" });
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
-
-
-app.get('/Teacherlogin', function (req, res) {
-  res.render('Teacherlogin', { valid: '' });
+app.get("/Teacherlogin", function (req, res) {
+  res.render("Teacherlogin", { valid: "" });
 });
 
-app.post('/Teacherlogin', async function (req, res) {
-  try{
-    const user = req.body.username.toLowerCase();
-    const pass = req.body.password.toLowerCase();
-    const teacher=await Teacher.findOne({ name: user, pass: pass }).exec();
-    if (teacher) {
-      res.redirect('/Attendance');
-    } else {
-      res.render('Teacherlogin', { valid: 'Invalid username or password' });
-    }
-  }
-  catch(err) {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-
-app.get("/admin",function(req,res){
-    res.render("Admin",{valid:""});
-})
-app.post('/Admin', async function (req, res) {
+app.post("/Teacherlogin", async function (req, res) {
   try {
     const user = req.body.username.toLowerCase();
     const pass = req.body.password.toLowerCase();
-    const admin = await Admin.findOne({ username: user, password: pass }).exec();
-
-    if (admin) {
-      res.redirect('AdminAdd');
+    const teacher = await Teacher.findOne({ name: user, pass: pass }).exec();
+    if (teacher) {
+      res.redirect("/Attendance");
     } else {
-      res.render('Admin', { valid: 'Invalid username or password' });
+      res.render("Teacherlogin", { valid: "Invalid username or password" });
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
-app.get('/AdminAdd', async function (req, res) {
+app.get("/admin", function (req, res) {
+  res.render("Admin", { valid: "" });
+});
+app.post("/Admin", async function (req, res) {
+  try {
+    const user = req.body.username.toLowerCase();
+    const pass = req.body.password.toLowerCase();
+    const admin = await Admin.findOne({
+      username: user,
+      password: pass,
+    }).exec();
+
+    if (admin) {
+      res.redirect("AdminAdd");
+    } else {
+      res.render("Admin", { valid: "Invalid username or password" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.get("/AdminAdd", async function (req, res) {
   try {
     const studentdata = await Student.find().exec();
     const teacherdata = await Teacher.find().exec();
 
-    res.render('AdminAdd', { student: studentdata, teacher: teacherdata });
+    res.render("AdminAdd", { student: studentdata, teacher: teacherdata });
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error retrieving data');
+    res.status(500).send("Error retrieving data");
   }
 });
 
-app.post('/addStudent', async function (req, res) {
-  const { studentName, studentId, Branch, Year, Section, studentPassword } = req.body;
+app.post("/addStudent", async function (req, res) {
+  const { studentName, studentId, Branch, Year, Section, studentPassword } =
+    req.body;
   const newStudent = new Student({
     name: studentName.toLowerCase(),
     roll: studentId.toLowerCase(),
@@ -108,17 +109,18 @@ app.post('/addStudent', async function (req, res) {
     section: Section.toUpperCase(),
     pass: studentPassword.toLowerCase(),
   });
-  await newStudent.save()
-  .then(() => {
-    res.redirect('/AdminAdd');
-  })
-  .catch(err => {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
-  });
+  await newStudent
+    .save()
+    .then(() => {
+      res.redirect("/AdminAdd");
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
 });
 
-app.post('/addteacher', async function (req, res) {
+app.post("/addteacher", async function (req, res) {
   const { teacherName, teacherId, designation, teacherPassword } = req.body;
   const newTeacher = new Teacher({
     name: teacherName.toLowerCase(),
@@ -129,19 +131,19 @@ app.post('/addteacher', async function (req, res) {
   await newTeacher
     .save()
     .then(() => {
-      res.redirect('/AdminAdd');
+      res.redirect("/AdminAdd");
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).send('Internal Server Error');
+      res.status(500).send("Internal Server Error");
     });
 });
 
-app.get("/Attendance",function(req,res){
-    res.render("Attendance",{student:{},status:""});
+app.get("/Attendance", function (req, res) {
+  res.render("Attendance", { student: {}, status: "" });
 });
 
-app.post('/AttendanceSearch', async function (req, res) {
+app.post("/AttendanceSearch", async function (req, res) {
   try {
     const dep = req.body.dep.toUpperCase();
     const year = req.body.year.toUpperCase();
@@ -160,23 +162,48 @@ app.post('/AttendanceSearch', async function (req, res) {
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error retrieving data');
+    res.status(500).send("Error retrieving data");
   }
 });
 
-app.post("/submitAttendance",function(req,res){
-    res.render("Attendance",{student:[],status:"Attendance submitted successfully."});
+app.post("/submitAttendance", async function (req, res) {
+  try {
+    const students = req.body.students;
+    const Allstudents=req.body.Allstudents;
+    for (const student of Allstudents) {
+      await Attendance.updateOne(
+        { roll: student },
+        { $inc: { total: 1 } }
+      );
+    }
+    for (const student of students) {
+      await Attendance.updateOne(
+        { roll: student },
+        { $inc: { present: 1 } }
+      );
+    }
+    res.render("Attendance", {
+      student: [],
+      status: "Attendance submitted successfully.",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
-app.get("/twotab",function(req,res){
-  res.render("twotab");
+app.get("/twotab", function (req, res) {
+  const rollno=req.query.rollno;
+  res.render("twotab",{rollno:rollno});
 });
-app.get("/student",function(req,res){
-  res.render("student");
+app.get("/student", async function (req, res) {
+  const rollno=req.query.rollno;
+  const user = await Attendance.findOne({roll:rollno});
+  res.render("student",{total:user.total,absent:user.total-user.present,present:user.present});
 });
-app.get("/timetable",function(req,res){
+app.get("/timetable", function (req, res) {
   res.render("timetable");
 });
-app.listen(3000,function(){ 
-    console.log("Server Started..");
-})
+app.listen(3000, function () {
+  console.log("Server Started..");
+});

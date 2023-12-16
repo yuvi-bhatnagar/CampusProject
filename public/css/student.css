@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #0b1320, #121d2a);
+}
+
+header {
+  background-color: #0b1320;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 184.55 px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.container {
+  align-items: center;
+  height: 80vh;
+  padding: 0 auto;
+}
+
+.component {
+  width: 25%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-left: 37.5%;
+  text-align: center;
+}
+
+.component h2 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.chart-container {
+  max-width: 400px;
+  height: 300px;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+main {
+  margin-top: 20px;
+}
+
+#chartLabels {
+  color: white;
+  font-size:large;
+  align-items: center;
+  justify-content: center;
+}
+#chartLabels p{
+  width:70%;
+  display:inline-flex;
+  justify-content: space-between;
+}
