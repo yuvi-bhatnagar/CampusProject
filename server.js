@@ -27,8 +27,8 @@ app.get("/login", function (req, res) {
 
 app.post("/login", async function (req, res) {
   try {
-    const user = req.body.username.toLowerCase();
-    const pass = req.body.password.toLowerCase();
+    const user = req.body.username;
+    const pass = req.body.password;
 
     const student = await Student.findOne({ name: user, pass: pass }).exec();
 
