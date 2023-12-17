@@ -14,17 +14,23 @@
     <h1>Campus Space</h1>
   </header>
   <main>
-    
+
     <div class="container">
       <div class="component">
-        <h2>Overall Attendance</h2>
+        <h2>Attendance</h2>
         <div class="chart-container">
           <canvas id="attendanceChart"></canvas>
         </div>
         <div id="chartLabels">
-          <p>Total Lectures: <span id="totalLectures"><%= total %></span></p>
-          <p>Present: <span id="presentCount"><%= present %></span></p>
-          <p>Absent: <span id="absentCount"><%= absent %></span></p>
+          <p>Total Lectures: <span id="totalLectures">
+              <%= total %>
+            </span></p>
+          <p>Present: <span id="presentCount">
+              <%= present %>
+            </span></p>
+          <p>Absent: <span id="absentCount">
+              <%= absent %>
+            </span></p>
         </div>
       </div>
     </div>
@@ -32,17 +38,19 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    var Present='<%= JSON.stringify(present) %>';
-    var Absent='<%= JSON.stringify(absent) %>';
+    var Present = '<%= JSON.stringify(present) %>';
+    var Absent = '<%= JSON.stringify(absent) %>';
+    var Total = '<%= JSON.stringify(total) %>';
+    Present = (Present / Total) * 100;
+    Absent = 100 - Present;
     const attendanceData = {
       present: Present,
       absent: Absent
     };
-    <!-- console.log(absent, present); -->
     const chartConfig = {
       type: 'pie',
       data: {
-        labels: ['Absent', 'Present'],
+        labels: ['Absent %', 'Present %'],
         datasets: [{
           data: [
             attendanceData.absent,
@@ -64,7 +72,7 @@
     const ctx = document.getElementById('attendanceChart').getContext('2d');
     new Chart(ctx, chartConfig);
   </script>
-  
+
 </body>
 
 </html>
