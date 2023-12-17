@@ -33,7 +33,7 @@ app.post("/login", async function (req, res) {
     const student = await Student.findOne({ name: user, pass: pass }).exec();
 
     if (student) {
-      res.render("sint",{rollno:student.roll});
+      res.render("sint", { rollno: student.roll });
     } else {
       res.render("login", { valid: "Invalid username or password" });
     }
@@ -168,19 +168,20 @@ app.post("/AttendanceSearch", async function (req, res) {
 
 app.post("/submitAttendance", async function (req, res) {
   try {
-    const students = req.body.students;
-    const Allstudents=req.body.Allstudents;
+    const students = Array.isArray(req.body.students)
+      ? req.body.students
+      : [req.body.students];
+
+    const Allstudents = Array.isArray(req.body.Allstudents)
+      ? req.body.Allstudents
+      : [req.body.Allstudents];
+
     for (const student of Allstudents) {
-      await Attendance.updateOne(
-        { roll: student },
-        { $inc: { total: 1 } }
-      );
+      await Attendance.updateOne({ roll: student }, { $inc: { total: 1 } });
     }
+
     for (const student of students) {
-      await Attendance.updateOne(
-        { roll: student },
-        { $inc: { present: 1 } }
-      );
+      await Attendance.updateOne({ roll: student }, { $inc: { present: 1 } });
     }
     res.render("Attendance", {
       student: [],
@@ -193,13 +194,17 @@ app.post("/submitAttendance", async function (req, res) {
 });
 
 app.get("/twotab", function (req, res) {
-  const rollno=req.query.rollno;
-  res.render("twotab",{rollno:rollno});
+  const rollno = req.query.rollno;
+  res.render("twotab", { rollno: rollno });
 });
 app.get("/student", async function (req, res) {
-  const rollno=req.query.rollno;
-  const user = await Attendance.findOne({roll:rollno});
-  res.render("student",{total:user.total,absent:user.total-user.present,present:user.present});
+  const rollno = req.query.rollno;
+  const user = await Attendance.findOne({ roll: rollno });
+  res.render("student", {
+    total: user.total,
+    absent: user.total - user.present,
+    present: user.present,
+  });
 });
 app.get("/timetable", function (req, res) {
   res.render("timetable");
